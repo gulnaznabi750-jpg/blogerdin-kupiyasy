@@ -1,0 +1,34 @@
+name: Build detective sixth grade video
+on:
+  push:
+    paths:
+      - make_detective_video.py
+      - .github/workflows/build-detective-video.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install video tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg fonts-dejavu-core
+          pip install edge-tts Pillow
+      - name: Render detective video with narration
+        run: python make_detective_video.py
+      - name: Publish video publicly
+        run: |
+          mv public/delo-016-kto-ukral-minus-6klass.mp4 ./
+          mv public/delo-016-video.html ./
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add delo-016-kto-ukral-minus-6klass.mp4 delo-016-video.html
+          git commit -m "Publish revised detective sixth-grade narrated video" || exit 0
+          git push
