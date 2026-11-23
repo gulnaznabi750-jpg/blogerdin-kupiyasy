@@ -1,0 +1,40 @@
+name: Validate ECO Fraction video visual frames
+on:
+  push:
+    paths:
+      - eco-fraction-lab-smooth-lesson.mp4
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Create inspection montage
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg
+          pip install Pillow
+          python - <<'PY'
+          import subprocess
+          from PIL import Image, ImageDraw
+          video='eco-fraction-lab-smooth-lesson.mp4'
+          frames=[]
+          for tm in [8,55,105]:
+              p=f'/tmp/ecoscene-{tm}.png'
+              subprocess.run(['ffmpeg','-y','-loglevel','error','-ss',str(tm),'-i',video,'-frames:v','1',p],check=True)
+              x=Image.open(p).convert('RGB'); x.thumbnail((640,360))
+              frames.append(x)
+          out=Image.new('RGB',(640*3,360),(255,255,255))
+          for i,x in enumerate(frames):out.paste(x,(i*640,0))
+          out.save('eco-smooth-preview.jpg',quality=86,optimize=True)
+          print('Video visual montage ready')
+          PY
+      - name: Add review image
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add eco-smooth-preview.jpg
+          git commit -m "Add ECO video verification montage" || exit 0
+          git push
