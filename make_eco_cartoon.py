@@ -42,17 +42,22 @@ S=[
 ("robot","Бип-бип! Маленькие шаги дают большие результаты!")],"mode":"final"}]
 
 def tts():
+ from gtts import gTTS
  async def go():
   for i,s in enumerate(S):
-   for j,(who,text) in enumerate(s["dialog"]):
+   for j,(who,dialog) in enumerate(s["dialog"]):
     path=f"/tmp/eco_{i}_{j}.mp3"
-    for retry in range(4):
-     try:
-      await edge_tts.Communicate(text,"ru-RU-SvetlanaNeural" if who=="girl" else "ru-RU-DmitryNeural",rate="+8%" if who=="girl" else "+5%",pitch="+5Hz" if who=="girl" else "-2Hz").save(path)
-      if os.path.getsize(path)>1000:break
-     except Exception:
-      if retry==3:raise
-      await asyncio.sleep(2)
+    try:
+     await asyncio.to_thread(gTTS(text=dialog,lang="ru").save,path)
+     if os.path.getsize(path)<1000:raise RuntimeError("TTS output empty")
+    except Exception as first:
+     print("Google TTS failed, retrying Microsoft:",str(first)[:180],flush=True)
+     await edge_tts.Communicate(dialog,"ru-RU-SvetlanaNeural" if who=="girl" else "ru-RU-DmitryNeural").save(path)
+    if who=="robot":
+     deep=path+".deep.mp3"
+     subprocess.run(["ffmpeg","-y","-loglevel","error","-i",path,"-af","asetrate=44100*0.92,aresample=44100","-codec:a","libmp3lame","-q:a","4",deep],check=True)
+     os.replace(deep,path)
+    print("VOICE",i,j,os.path.getsize(path),flush=True)
  asyncio.run(go())
 tts()
 
