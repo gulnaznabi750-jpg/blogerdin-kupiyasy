@@ -18,6 +18,7 @@ jobs:
           python-version: '3.11'
       - name: Install rendering tools
         run: |
+          sudo apt-get install -y ffmpeg fonts-dejavu-core
           pip install edge-tts gTTS Pillow numpy
       - name: Build cleaner smoother shorter video
         run: python make_eco_calm_hd.py
