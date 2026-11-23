@@ -3,6 +3,7 @@ on:
   push:
     paths:
       - eco-fraction-lab-smooth-lesson.mp4
+      - .github/workflows/inspect-eco-smooth.yml
   workflow_dispatch:
 permissions:
   contents: write
