@@ -20,7 +20,7 @@ jobs:
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y ffmpeg fonts-dejavu-core
-          pip install edge-tts Pillow numpy
+          pip install edge-tts gTTS Pillow numpy
       - name: Render talking animated characters and Russian voices
         run: python make_eco_cartoon.py
       - name: Publish MP4 and viewer
