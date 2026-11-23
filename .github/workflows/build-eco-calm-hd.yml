@@ -1,0 +1,34 @@
+name: Build ECO Fraction Lab calm HD version
+on:
+  push:
+    paths:
+      - make_eco_calm_hd.py
+      - .github/workflows/build-eco-calm-hd.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install rendering tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg fonts-dejavu-core
+          pip install edge-tts gTTS Pillow numpy
+      - name: Build cleaner smoother shorter video
+        run: python make_eco_calm_hd.py
+      - name: Publish video
+        run: |
+          mv public/eco-fraction-lab-calm-hd.mp4 ./
+          mv public/eco-fraction-calm-hd.html ./
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add eco-fraction-lab-calm-hd.mp4 eco-fraction-calm-hd.html
+          git commit -m "Publish shorter ECO Fraction Lab HD video" || exit 0
+          git push
