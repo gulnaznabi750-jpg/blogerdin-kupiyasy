@@ -1,0 +1,34 @@
+name: Build Kazakh voiceover video
+on:
+  push:
+    paths:
+      - make_video.py
+      - .github/workflows/build-video.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install synthesis and video tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg fonts-dejavu-core
+          pip install edge-tts Pillow
+      - name: Render Kazakh narrated lesson
+        run: python make_video.py
+      - name: Publish generated MP4 and video page
+        run: |
+          mv public/blogerdin-kupiyasy-9synyp.mp4 ./
+          mv public/video.html ./
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add blogerdin-kupiyasy-9synyp.mp4 video.html
+          git commit -m "Publish narrated Kazakh mathematics video" || exit 0
+          git push
