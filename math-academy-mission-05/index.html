@@ -38,10 +38,92 @@ header{flex:0 0 auto;position:relative;z-index:4;border-bottom:2px solid #dba85d
 #gate{position:absolute;inset:0;z-index:8;display:none;align-items:center;justify-content:center;flex-direction:column;gap:12px;background:radial-gradient(ellipse,#9167c3ee,#25134def 65%,#0c0a26ef)}#gate strong{font:900 26px Georgia,serif;color:#ffdda7;text-align:center}#gate .sig{font-size:65px}
 @media(max-height:760px){header{padding:5px 9px}#scene{min-height:176px}#desk{padding:7px 9px}#parchment{padding:6px 10px}#expression{font-size:24px}#control{padding:6px 1px 2px;min-height:95px}#keypad button{height:31px}#mainBtn{padding:9px}#status{min-height:20px;padding-top:3px}}
 @media(max-height:625px){#scene{min-height:145px}#desk{padding:5px 9px}#control{min-height:79px;padding:4px 1px 2px}#keypad button{height:27px}#fractionWheel .line button{height:23px}#typeLever button{min-height:51px}#parchment small{font-size:8px}#parchment{padding:4px 8px}#expression{font-size:21px}#instruction{font-size:10px}#hintBtn{font-size:10px}#roomTitle{font-size:11px}}
+</style><style>
+/* Detailed illustrated library replaces abstract CSS furniture */
+#scene{background:#0d1031!important;min-height:225px}
+#fantasyLibrary{position:absolute;width:100%;height:100%;left:0;top:0;z-index:-1;pointer-events:none}
+#scene:before{display:none!important}
+#scene .room .window,#scene .room .shelf,#scene .room .lantern,#scene .room .floor,#scene .room .orb{display:none!important}
+#scene .room{display:none!important}
+#crystal{top:57%!important;width:29%!important;height:38%!important;max-height:165px!important;z-index:2}
+#crystal svg{filter:drop-shadow(0 0 10px #b2caff)}
+#crystal.awake svg{animation:shimmer .48s alternate infinite}
+#roomTitle{z-index:5!important;top:7px!important;left:14%!important;right:14%!important;font-size:clamp(10px,2.8vw,13px)!important;letter-spacing:.2px!important;color:#ffedc7!important;background:linear-gradient(#25143fdc,#160e38e8)!important;border:2px solid #e7bc7b!important;padding:6px 5px!important;box-shadow:0 0 14px #cca1ff!important}
+#roomHint{z-index:5!important;bottom:7px!important;background:linear-gradient(#211747d9,#281846df)!important;border:1px solid #e6c085!important;border-radius:15px!important;font-size:11px!important;padding:7px!important;color:#fff0d7!important}
+#floatingFormulas{position:absolute;inset:0;z-index:4;pointer-events:none}
+.formula{position:absolute;display:flex;align-items:center;justify-content:center;text-align:center;font:italic 700 clamp(12px,3vw,17px) Georgia,serif;background:linear-gradient(120deg,#302269d9,#45338fdc);border:1.5px solid #c9a8f7;color:#e9faff;padding:7px 7px;border-radius:8px;box-shadow:0 0 15px #9f74f2cc,inset 0 0 11px #b3caff30;text-shadow:0 1px 6px #20183d}
+.formula.a{left:4%;top:32%;transform:rotate(-8deg)}.formula.b{right:4%;top:32%;transform:rotate(7deg)}.formula.c{left:3%;top:60%;transform:rotate(4deg)}.formula.d{right:3%;top:60%;transform:rotate(-6deg)}
+#desk{background:linear-gradient(165deg,#291640,#161433 56%,#231443)!important;border-top:4px solid #e5b56e!important}
+#parchment{border-radius:12px!important;border:2px solid #ddb073!important;background:linear-gradient(#fff5d8,#e9c29a)!important}
+header{background:linear-gradient(110deg,#101436,#2c1545,#130e33)!important;border-bottom:2px solid #ffd89b!important}
+#expression{color:#2e1b47!important}
+#control{background:linear-gradient(90deg,transparent,#67429b20,transparent)!important}
+@media(max-height:760px){#scene{min-height:185px!important}.formula{font-size:11px!important;padding:4px!important}.formula.a,.formula.b{top:31%!important}.formula.c,.formula.d{top:62%!important}#roomHint{padding:3px!important;font-size:9px!important}#crystal{height:35%!important}}
+@media(max-height:640px){#scene{min-height:157px!important}.formula{font-size:10px!important}.formula.a,.formula.b{top:38%!important}#roomTitle{top:3px!important;padding:4px!important}}
 </style></head><body><main id="app">
 <header><div><small>✦ МАТЕМАТИЧЕСКАЯ АКАДЕМИЯ · МИССИЯ 05</small><strong>СЕКРЕТНЫЙ КОД БЕСКОНЕЧНОСТИ</strong></div><div id="counter">💎 0 / 12</div></header>
-<section id="scene"><div class="room"><div class="window"></div><div class="shelf left"></div><div class="shelf right"></div><div class="lantern l">🔮</div><div class="lantern r">🔮</div><div class="orb"></div><div class="floor"></div></div>
-<div id="roomTitle">ЗАЛ I · ХРАНИЛИЩЕ ПЕРИОДОВ</div><div id="crystal"><svg viewBox="0 0 120 170" aria-hidden="true"><defs><linearGradient id="facet" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#effbff"/><stop offset=".27" stop-color="#7ae9ff"/><stop offset=".68" stop-color="#b77cff"/><stop offset="1" stop-color="#4829c5"/></linearGradient></defs><path d="M59 5 L111 49 L84 134 L59 163 L30 131 L9 49 Z" fill="url(#facet)" stroke="#ffe1fc" stroke-width="3"/><path d="M9 49 L59 66 L111 49 M59 5 L59 163 M30 131 L59 66 L84 134 M59 66 L9 49" stroke="#fff8ff" stroke-width="2" opacity=".7" fill="none"/><text x="59" y="100" font-size="40" font-family="Georgia" font-weight="900" text-anchor="middle" fill="#fff9d4">∞</text></svg></div><div id="roomHint">Расшифруй символы — пробуди кристалл!</div><div id="sparkles"></div></section>
+<section id="scene"><svg id="fantasyLibrary" viewBox="0 0 540 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+<defs>
+<radialGradient id="sky" cx="50%" cy="43%" r="70%"><stop stop-color="#9a6ad2"/><stop offset=".38" stop-color="#442f81"/><stop offset=".78" stop-color="#14183e"/><stop offset="1" stop-color="#090c29"/></radialGradient>
+<linearGradient id="gold" x1="0" y1="0" x2=".8" y2="1"><stop stop-color="#fff4c9"/><stop offset=".27" stop-color="#e5b971"/><stop offset=".53" stop-color="#9a653e"/><stop offset=".77" stop-color="#ffd994"/><stop offset="1" stop-color="#825039"/></linearGradient>
+<linearGradient id="metal" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#a5c8fb"/><stop offset=".25" stop-color="#443b88"/><stop offset=".7" stop-color="#2a1e51"/><stop offset="1" stop-color="#9578c8"/></linearGradient>
+<linearGradient id="book" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#402453"/><stop offset=".17" stop-color="#a96974"/><stop offset=".38" stop-color="#302456"/><stop offset=".52" stop-color="#456397"/><stop offset=".7" stop-color="#ad6c59"/><stop offset=".85" stop-color="#4e3c79"/><stop offset="1" stop-color="#d6a76a"/></linearGradient>
+<radialGradient id="windowSky"><stop stop-color="#e596fb"/><stop offset=".19" stop-color="#8162e3"/><stop offset=".4" stop-color="#473991"/><stop offset=".76" stop-color="#162a63"/><stop offset="1" stop-color="#0a143a"/></radialGradient>
+<filter id="g"><feGaussianBlur stdDeviation="7"/></filter><filter id="smallGlow"><feGaussianBlur stdDeviation="2"/></filter>
+<pattern id="spines" width="26" height="100" patternUnits="userSpaceOnUse"><rect width="26" height="100" fill="#251b43"/><rect x="2" y="2" width="6" height="96" rx="2" fill="#714a67"/><rect x="10" y="6" width="7" height="92" rx="1" fill="#45658b"/><rect x="19" y="3" width="5" height="94" fill="#a47b60"/><path d="M0 20H26M0 81H26" stroke="#d9a966" opacity=".48"/></pattern>
+<pattern id="stars" width="77" height="65" patternUnits="userSpaceOnUse"><circle cx="14" cy="15" r="1.3" fill="#ebf5ff"/><circle cx="58" cy="42" r=".9" fill="#cce5ff"/><circle cx="37" cy="55" r=".9" fill="#fff" opacity=".8"/><path d="M68 12v7m-3.5-3.5h7" stroke="#fff0fa" stroke-width=".8"/></pattern>
+</defs>
+<rect width="540" height="600" fill="#100e31"/>
+<path d="M0 0H540V600H0Z" fill="url(#sky)"/>
+<path d="M-30 0H160Q130 80 130 300V580H-30ZM570 0H380Q410 80 410 300V580H570Z" fill="#13102b" stroke="url(#gold)" stroke-width="4"/>
+<!-- gothic vault and golden carved architecture -->
+<path d="M52 0Q93 35 115 106Q170 18 270 -36Q369 18 425 106Q457 24 490 0" fill="none" stroke="#b0878b" stroke-width="15"/>
+<path d="M52 0Q93 35 115 106Q170 18 270 -36Q369 18 425 106Q457 24 490 0" fill="none" stroke="url(#gold)" stroke-width="5"/>
+<path d="M130 50Q270 -45 410 50L410 375H130Z" fill="url(#metal)" stroke="url(#gold)" stroke-width="7"/>
+<path d="M151 93Q270 -5 389 93V366H151Z" fill="url(#windowSky)" stroke="#dbc38e" stroke-width="4"/>
+<path d="M151 93Q270 -5 389 93V366H151Z" fill="url(#stars)" opacity=".74"/>
+<path d="M270 37V367M151 212H389M150 294H390M210 54V365M330 54V365" stroke="#c5a1b3" stroke-width="4" opacity=".8"/>
+<path d="M156 361L224 309L244 338L296 288L340 310L388 280V365Z" fill="#171b48" opacity=".75"/>
+<path d="M223 360L274 302L300 333L337 307L389 347V367Z" fill="#22174c" opacity=".72"/>
+<!-- glowing cosmic moon -->
+<circle cx="270" cy="170" r="64" fill="#b271eb" opacity=".20" filter="url(#g)"/>
+<ellipse cx="274" cy="171" rx="52" ry="18" fill="none" stroke="#bfaaff" stroke-width="12" transform="rotate(-30 274 171)" filter="url(#g)" opacity=".62"/>
+<ellipse cx="274" cy="171" rx="52" ry="18" fill="none" stroke="#f2c5fd" stroke-width="3" transform="rotate(-30 274 171)" opacity=".66"/>
+<!-- deep shelving -->
+<rect x="-7" y="58" width="140" height="445" rx="5" fill="#18132f" stroke="url(#gold)" stroke-width="10"/>
+<rect x="407" y="58" width="140" height="445" rx="5" fill="#18132f" stroke="url(#gold)" stroke-width="10"/>
+<rect x="9" y="83" width="111" height="403" fill="url(#spines)"/><rect x="420" y="83" width="111" height="403" fill="url(#spines)"/>
+<g stroke="url(#gold)" stroke-width="12"><path d="M-5 175H134M-5 291H134M-5 404H134M406 175H550M406 291H550M406 404H550"/></g>
+<g stroke="#f7df9d" stroke-width="1.4" opacity=".75"><path d="M0 169H132M0 285H132M0 398H132M408 169H540M408 285H540M408 398H540"/></g>
+<path d="M135 0V498M405 0V498" stroke="#8b5e75" stroke-width="20"/><path d="M135 0V498M405 0V498" stroke="url(#gold)" stroke-width="5"/>
+<g fill="#e7ba80"><path d="M122 111l13 -14 13 14-13 14ZM392 111l13 -14 13 14-13 14ZM122 378l13 -14 13 14-13 14ZM392 378l13 -14 13 14-13 14Z"/></g>
+<!-- chandeliers and crystal lanterns -->
+<path d="M63 0V72M477 0V72" stroke="#c89d73" stroke-width="4" stroke-dasharray="5 3"/>
+<path d="M63 67L78 92L63 126L48 92ZM477 67L492 92L477 126L462 92Z" fill="#a8a5ff" stroke="url(#gold)" stroke-width="4"/>
+<ellipse cx="63" cy="94" rx="22" ry="34" fill="#ebccff" filter="url(#g)" opacity=".67"/><ellipse cx="477" cy="94" rx="22" ry="34" fill="#ebccff" filter="url(#g)" opacity=".67"/>
+<!-- magical table / concentric astrolabe -->
+<ellipse cx="270" cy="490" rx="215" ry="77" fill="#090d2a" opacity=".8" filter="url(#g)"/>
+<ellipse cx="270" cy="480" rx="206" ry="70" fill="#141b45" stroke="url(#gold)" stroke-width="14"/>
+<ellipse cx="270" cy="474" rx="186" ry="53" fill="#20336b" stroke="#80d4ff" stroke-width="3"/>
+<ellipse cx="270" cy="473" rx="155" ry="47" fill="none" stroke="#eabd75" stroke-width="3"/>
+<ellipse cx="270" cy="473" rx="112" ry="34" fill="none" stroke="#83dfff" stroke-width="3" stroke-dasharray="5 8"/>
+<path d="M74 482Q270 573 465 482" fill="none" stroke="#9d6fa9" stroke-width="11"/>
+<path d="M82 522Q270 609 458 522L440 600H97Z" fill="#211742" stroke="url(#gold)" stroke-width="6"/>
+<path d="M124 553Q270 617 415 553" fill="none" stroke="#745ba7" stroke-width="17"/>
+<path d="M269 545l-15 25 15 24 15-24Z" fill="#f9d38f" stroke="#b98ecf" stroke-width="3"/>
+<path d="M270 473l-122-26 122 50 120-48" fill="none" stroke="#cc9ff0" opacity=".55"/>
+<!-- floating gold astrolabe rings, behind actual game crystal -->
+<ellipse cx="270" cy="340" rx="108" ry="119" stroke="url(#gold)" stroke-width="10" fill="#16134a44"/>
+<ellipse cx="270" cy="340" rx="115" ry="45" stroke="#dd8aff" stroke-width="4" fill="none" transform="rotate(-26 270 340)" opacity=".78"/>
+<ellipse cx="270" cy="340" rx="95" ry="116" stroke="#86e1ff" stroke-width="2" stroke-dasharray="4 9" fill="none"/>
+<path d="M265 220l6 -11 6 11-6 10ZM166 337l-10 -7 -10 7 10 8ZM377 338l10 -7 10 7-10 8Z" fill="#ffe6a4" stroke="#9c74ce" stroke-width="2"/>
+<!-- mystical creeping foliage -->
+<g fill="none" stroke="#333b47" stroke-width="7" opacity=".85"><path d="M0 50Q80 123 40 224T21 427"/><path d="M540 36Q476 111 512 237T526 442"/></g>
+<g fill="#50745b" opacity=".9"><ellipse cx="24" cy="62" rx="13" ry="26" transform="rotate(-45 24 62)"/><ellipse cx="53" cy="132" rx="11" ry="24" transform="rotate(28 53 132)"/><ellipse cx="492" cy="120" rx="12" ry="26" transform="rotate(-23 492 120)"/><ellipse cx="518" cy="240" rx="12" ry="24" transform="rotate(35 518 240)"/></g>
+<!-- sparkles -->
+<g fill="#ffe7b5"><path d="M186 126l3 9 9 3-9 3-3 9-3-9-9-3 9-3ZM367 210l3 8 8 3-8 3-3 8-3-8-8-3 8-3Z"/><circle cx="166" cy="248" r="2"/><circle cx="385" cy="180" r="2"/><circle cx="344" cy="102" r="2"/></g>
+</svg><div class="room"><div class="window"></div><div class="shelf left"></div><div class="shelf right"></div><div class="lantern l">🔮</div><div class="lantern r">🔮</div><div class="orb"></div><div class="floor"></div></div>
+<div id="floatingFormulas"><div class="formula a">0,(3)=⅓</div><div class="formula b">1,2(3)=³⁷⁄₃₀</div><div class="formula c">0,1(6)=⅙</div><div class="formula d">0,(27)=³⁄₁₁</div></div><div id="roomTitle">ЗАЛ I · ХРАНИЛИЩЕ ПЕРИОДОВ</div><div id="crystal"><svg viewBox="0 0 120 170" aria-hidden="true"><defs><linearGradient id="facet" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#effbff"/><stop offset=".27" stop-color="#7ae9ff"/><stop offset=".68" stop-color="#b77cff"/><stop offset="1" stop-color="#4829c5"/></linearGradient></defs><path d="M59 5 L111 49 L84 134 L59 163 L30 131 L9 49 Z" fill="url(#facet)" stroke="#ffe1fc" stroke-width="3"/><path d="M9 49 L59 66 L111 49 M59 5 L59 163 M30 131 L59 66 L84 134 M59 66 L9 49" stroke="#fff8ff" stroke-width="2" opacity=".7" fill="none"/><text x="59" y="100" font-size="40" font-family="Georgia" font-weight="900" text-anchor="middle" fill="#fff9d4">∞</text></svg></div><div id="roomHint">Расшифруй символы — пробуди кристалл!</div><div id="sparkles"></div></section>
 <section id="desk"><div id="progress"><span id="chapter">ЗАЛ I · ХРАНИЛИЩЕ ПЕРИОДОВ</span><span id="level">ПЕЧАТЬ 1 / 12</span></div><div id="progressBar"><div id="progressFill"></div></div><section id="parchment"><small id="topic">РАСШИФРУЙ ПОВТОРЯЮЩИЕСЯ ЦИФРЫ</small><div id="expression">0,333333…</div><div id="instruction">Введи наименьший повторяющийся блок цифр.</div></section><section id="control"></section><button id="mainBtn">✦ РАСШИФРОВАТЬ ПЕЧАТЬ</button><div id="status">Вращай шифратор и раскрывай тайну дроби.</div><button id="hintBtn">💡 Подсказка</button></section>
 <section id="overlay"><small>МАТЕМАТИЧЕСКАЯ АКАДЕМИЯ · МИССИЯ 05</small><div class="symbol">∞</div><h1>СЕКРЕТНЫЙ КОД<br>БЕСКОНЕЧНОСТИ</h1><p>Магическая лаборатория хранит 12 печатей. Определи период, узнай вид дроби и вращай цифровые кольца, чтобы восстановить обыкновенные дроби.</p><small>4 ЗАЛА · 12 ПЕЧАТЕЙ · ШИФРОВАЛЬНЫЕ КОЛЬЦА</small><button id="startBtn">✧ ВОЙТИ В ЛАБОРАТОРИЮ</button></section><section id="gate"><span class="sig">🔮</span><strong>ОТКРЫТ НОВЫЙ ЗАЛ!</strong></section></main>
 <script>
